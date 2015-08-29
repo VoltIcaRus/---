@@ -265,7 +265,6 @@
             maximumDc: 60,
             bouncerPlus: true,
             blacklistEnabled: true,
-            lockdownEnabled: false,
             lockGuard: false,
             maximumLocktime: 10,
             cycleGuard: true,
@@ -1152,12 +1151,6 @@
                 if (isMuted) {
                     API.moderateDeleteChat(chat.cid);
                     return true;
-                }
-                if (basicBot.settings.lockdownEnabled) {
-                    if (perm === 0) {
-                        API.moderateDeleteChat(chat.cid);
-                        return true;
-                    }
                 }
                 if (basicBot.chatcleaner(chat)) {
                     API.moderateDeleteChat(chat.cid);
@@ -2511,23 +2504,6 @@
                 }
             },
 
-            lockdownCommand: {
-                command: 'lockdown',
-                rank: 'mod',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var temp = basicBot.settings.lockdownEnabled;
-                        basicBot.settings.lockdownEnabled = !temp;
-                        if (basicBot.settings.lockdownEnabled) {
-                            return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.lockdown}));
-                        }
-                        else return API.sendChat(subChat(basicBot.chat.toggleoff, {name: chat.un, 'function': basicBot.chat.lockdown}));
-                    }
-                }
-            },
 
             lockguardCommand: {
                 command: 'lockguard',
