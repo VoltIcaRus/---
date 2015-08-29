@@ -9,7 +9,7 @@
 
     /*window.onerror = function() {
         var room = JSON.parse(localStorage.getItem("basicBotRoom"));
-        window.location = 'https://plug.dj/ou-anime.카스가노소라;
+        window.location = 'https://plug.dj/ou-anime.채팅봇;
     };*/
 
     API.getWaitListPosition = function(id){
